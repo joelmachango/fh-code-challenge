@@ -1,32 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { Routes, RouterModule } from '@angular/router'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-// import { MatSliderModule } from '@angular/material/slider';
-// import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import {MatInputModule, MatSliderModule, MatAutocompleteModule} from '@angular/material'
-
+import {MatInputModule, MatSliderModule, MatAutocompleteModule, MatDividerModule,MatListModule} from '@angular/material'
 
 
+import { AppComponent } from './app.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '', pathMatch: 'full' }
+]
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
