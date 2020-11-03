@@ -13,6 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/grant', [
+    'uses' => 'GrantController@postGrant'
+]);
+
+Route::get('/grants', [
+    'uses' => 'GrantController@getGrants'
+]);
+
+Route::put('/grant/{id}', [
+    'uses' => 'GrantController@putGrant'
+]);
+
+Route::delete('/grant/{id}', [
+    'uses' => 'GrantController@deleteGrant'
+]);
