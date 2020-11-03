@@ -30,14 +30,14 @@ class GrantController extends Controller
     if (!$grant) {
       return response()->json(['message' => 'Document not found'], 404);
     }
-    $grant->content = $request->input('name');
+    $grant->name = $request->input('name');
     $grant->save();
     return response()->json(['grant' => $grant], 200);
   }
 
   public function deleteGrant($id)
   {
-    $grant = Grant::fing($id);
+    $grant = Grant::find($id);
     $grant->delete();
     return response()->json(['message' => 'Grant name deleted'], 200);
   }
