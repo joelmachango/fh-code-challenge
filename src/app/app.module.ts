@@ -5,8 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule, MatSliderModule, MatAutocompleteModule, MatDividerModule,MatListModule} from '@angular/material'
 
+import { AuthModule } from './auth/auth.module';
+import { GrantModule } from './grant/grant.module';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './common/header/header.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' }
@@ -14,7 +17,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -26,7 +30,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatInputModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    AuthModule,
+    GrantModule
   ],
   providers: [],
   bootstrap: [AppComponent]
