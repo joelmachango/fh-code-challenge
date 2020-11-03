@@ -10,6 +10,9 @@ class GrantController extends Controller
   public function postGrant(Request $request)
   {
     $grant = new Grant();
+    $grant->name = $request->input('name');
+    $grant->save();
+    return response()->json(['grant' => $grant], 201);
   }
 
   public function getGrants()
