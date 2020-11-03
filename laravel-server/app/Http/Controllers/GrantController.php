@@ -17,6 +17,11 @@ class GrantController extends Controller
 
   public function getGrants()
   {
+    $grants = Grant::all();
+    $response = [
+      'grants' => $grants
+    ];
+    return response()->json($response, 200);
   }
 
   public function putGrant(Request $request, $id)
