@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+
 import { GrantCreateComponent } from './grant-create/grant-create.component';
 import { GrantDetailsComponent } from './grant-details/grant-details.component';
 import { GrantListComponent } from './grant-list/grant-list.component';
@@ -11,7 +12,7 @@ import { GrantComponent } from './grant.component';
 
 const routes: Routes = [
   {
-    path: "grant",
+    path: "grants",
     component: GrantComponent,
     children: [
       { path: "", component: GrantListComponent},
