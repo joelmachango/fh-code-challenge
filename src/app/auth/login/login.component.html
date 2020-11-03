@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="grant-container">
+  <div class="row">
+    <div class="col">
+      <div class="auth-from">
+        <div class="title auth-title">
+          <h1>Login into your Account</h1>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="grant-form">
+          <mat-form-field class="grant-full-width">
+            <input matInput placeholder="Email" value="" type="email" id="email" formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field class="grant-full-width">
+            <input matInput placeholder="Password" value="" type="password" id="password" formControlName="password">
+          </mat-form-field>
+
+          <mat-checkbox class="grant-check">Remember me</mat-checkbox>
+
+          <button mat-button class="grant-btn" [disabled]="!loginForm.valid" type="submit">Log in</button>
+        </form>
+
+        <br>
+        <br>
+        <div class="grant-auth-p">
+          <p>For first time Sign in, <a [routerLink]="['/register']" routerLinkActive="router-link-active">create your
+              account</a> here.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="image-container">
+        <img src="assets/images/fh-login.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>

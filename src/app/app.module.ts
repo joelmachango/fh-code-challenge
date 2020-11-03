@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' }
+  { path: '', redirectTo: 'grants', pathMatch: 'full' }
 ]
 
 @NgModule({

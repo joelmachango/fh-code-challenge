@@ -1,0 +1,14 @@
+.grant-nav {
+  margin-top: 20px;
+
+  $a-tags: "a:active, a:hover, a:visited";
+  $a-tags-hover: "a:active, a:hover";
+
+  #{$a-tags} {
+    color: white;
+    text-decoration: none;
+  }
+  #{$a-tags-hover} {
+    color: #aebc37 !important;
+  }
+}
