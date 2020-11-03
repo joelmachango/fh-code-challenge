@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-$a-tags: "a:active, a:hover, a:visited";
+$a-tags: "a, a:active, a:hover, a:visited";
 $a-tags-hover: "a:active, a:hover";
 
 #{$a-tags} {
@@ -8,7 +8,7 @@ $a-tags-hover: "a:active, a:hover";
   text-decoration: none;
 }
 #{$a-tags-hover} {
-  color: #aebc37 !important;
+  color: #aebc37;
 }
 
 html,
