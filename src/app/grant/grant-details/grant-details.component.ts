@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-grant-details",
@@ -6,7 +7,12 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./grant-details.component.scss"],
 })
 export class GrantDetailsComponent implements OnInit {
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    console.log(this.grant.id);
+    this.dialog.open(GrantDetailsPopupConponent, {});
+  }
 
   grant = {
     id: 1,
@@ -21,5 +27,22 @@ export class GrantDetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.grant);
+  }
+}
+
+@Component({
+  selector: "grant-details-popup",
+  templateUrl: "grant-details-popup.html",
+  styleUrls: ["./grant-details.component.scss"],
+})
+export class GrantDetailsPopupConponent {
+  constructor(public dialog: MatDialog) {}
+
+  closeDialog() {
+    this.dialog.closeAll();
+  }
+
+  deleteGrant() {
+    console.log("Delete Grant");
   }
 }
