@@ -63,5 +63,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [],
 })
 export class GrantModule {}

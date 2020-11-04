@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-grant-details",
@@ -36,13 +38,21 @@ export class GrantDetailsComponent implements OnInit {
   styleUrls: ["./grant-details.component.scss"],
 })
 export class GrantDetailsPopupConponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   closeDialog() {
     this.dialog.closeAll();
   }
 
   deleteGrant() {
+    window.alert("Grant successfully deleted!");
+    this.toastr.success("Delete Grant!", "Grant successfully deleted");
+    this.closeDialog();
+    this.router.navigate(["/grants"]);
     console.log("Delete Grant");
   }
 }

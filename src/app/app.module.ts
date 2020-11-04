@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ToastrModule } from "ngx-toastr";
 
 import { AuthModule } from "./auth/auth.module";
 import { GrantModule } from "./grant/grant.module";
@@ -22,6 +23,7 @@ const routes: Routes = [{ path: "", redirectTo: "grants", pathMatch: "full" }];
     ReactiveFormsModule,
     AuthModule,
     GrantModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
