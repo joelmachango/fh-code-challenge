@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGrantTable extends Migration
+class CreateUserTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,10 +13,13 @@ class CreateGrantTable extends Migration
    */
   public function up()
   {
-    Schema::create('grants', function (Blueprint $table) {
+    Schema::create('users', function (Blueprint $table) {
       $table->increments('id');
       $table->timestamps();
-      $table->text('name');
+      $table->string('name');
+      $table->string('email')->unique();
+      $table->string('password');
+      $table->rememberToken();
     });
   }
 
@@ -27,6 +30,6 @@ class CreateGrantTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('grant');
+    Schema::dropIfExists('user');
   }
 }
