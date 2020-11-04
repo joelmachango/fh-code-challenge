@@ -2,25 +2,6 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Grant } from "../shared/grant.model";
 import { GrantService } from "../shared/grant.service";
 
-const ELEMENT_DATA: Grant[] = [
-  {
-    id: 1,
-    status: "In Consideration",
-    name: "Provision of primary health services for refugees.",
-    grantor: "USAID",
-    location: "Nairobi",
-    amount: "$15,00,000",
-  },
-  {
-    id: 2,
-    status: "Deployment",
-    name: "Provision of primary health services for refugees.",
-    grantor: "USAID",
-    location: "Nairobi",
-    amount: "$15,00,000",
-  },
-];
-
 @Component({
   selector: "app-grant-list",
   templateUrl: "./grant-list.component.html",
@@ -28,24 +9,34 @@ const ELEMENT_DATA: Grant[] = [
 })
 export class GrantListComponent implements OnInit {
   grants: Grant[] = [];
+  displayedColumns: any;
+  dataSource: any;
   constructor(private grantService: GrantService) {}
 
   ngOnInit() {
-    const grantsObservable = this.grantService.getGrants();
-
-    grantsObservable.subscribe((grants: Grant[]) => {
-      this.grants = grants;
-      console.log(this.grants);
-    });
+    this.loadGrants();
   }
 
-  displayedColumns = [
-    "name",
-    "status",
-    "grantor",
-    "location",
-    "amount",
-    "star",
-  ];
-  dataSource = ELEMENT_DATA;
+  loadGrants() {
+    this.grantService.getGrants().subscribe(
+      (res) => {
+        this.grants = res.grants;
+        // console.log(this.grants);
+        const ELEMENT_DATA = this.grants;
+
+        this.displayedColumns = [
+          "name",
+          "status",
+          "grantor",
+          "location",
+          "amount",
+          "star",
+        ];
+        this.dataSource = ELEMENT_DATA;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }
