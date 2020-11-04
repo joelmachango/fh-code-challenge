@@ -8,10 +8,11 @@ import {
   MatButtonModule,
   MatAutocompleteModule,
   MatSelectModule,
+  MatDividerModule,
+  MatListModule,
+  MatDialogModule,
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
-import { HttpClientModule } from "@angular/common/http";
 
 import { GrantCreateComponent } from "./grant-create/grant-create.component";
 import { GrantDetailsComponent } from "./grant-details/grant-details.component";
@@ -27,7 +28,7 @@ const routes: Routes = [
     children: [
       { path: "", component: GrantListComponent },
       { path: "new", component: GrantCreateComponent },
-      { path: "manage", component: GrantManageComponent },
+      { path: "manage/:grantId", component: GrantManageComponent },
       { path: ":grantId", component: GrantDetailsComponent },
     ],
   },
@@ -51,6 +52,9 @@ const routes: Routes = [
     MatButtonModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatDividerModule,
+    MatListModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
   ],
