@@ -20,7 +20,6 @@ const routes: Routes = [{ path: "", redirectTo: "grants", pathMatch: "full" }];
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
     AuthModule,
     GrantModule,
   ],

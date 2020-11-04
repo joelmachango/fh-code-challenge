@@ -1,7 +1,17 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
-import { MatTableModule, MatIconModule } from "@angular/material";
+import {
+  MatTableModule,
+  MatIconModule,
+  MatInputModule,
+  MatButtonModule,
+  MatAutocompleteModule,
+  MatSelectModule,
+} from "@angular/material";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
+import { HttpClientModule } from "@angular/common/http";
 
 import { GrantCreateComponent } from "./grant-create/grant-create.component";
 import { GrantDetailsComponent } from "./grant-details/grant-details.component";
@@ -37,6 +47,12 @@ const routes: Routes = [
     CommonModule,
     MatTableModule,
     MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class GrantModule {}
