@@ -18,17 +18,21 @@ use Illuminate\Http\Request;
 // });
 
 Route::post('/grant', [
-    'uses' => 'GrantController@postGrant'
+  'uses' => 'GrantController@postGrant'
 ]);
 
 Route::get('/grants', [
-    'uses' => 'GrantController@getGrants'
+  'uses' => 'GrantController@getGrants'
 ]);
 
 Route::put('/grant/{id}', [
-    'uses' => 'GrantController@putGrant'
+  'uses' => 'GrantController@putGrant'
 ]);
 
 Route::delete('/grant/{id}', [
-    'uses' => 'GrantController@deleteGrant'
+  'uses' => 'GrantController@deleteGrant'
+]);
+
+Route::post('/user', [
+  'uses' => 'UserController@signup'
 ]);
