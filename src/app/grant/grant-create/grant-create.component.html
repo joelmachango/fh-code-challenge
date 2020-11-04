@@ -1,1 +1,51 @@
-<p>grant-create works!</p>
+<div class="grant-container">
+  <div class="row">
+    <div class="col">
+      <div class="auth-from">
+        <div class="title auth-title">
+          <h1>Add new Grant</h1>
+        </div>
+
+        <form [formGroup]="grantCreateForm" (ngSubmit)="addGrant()" class="grant-form">
+          <mat-form-field class="grant-full-width">
+            <input matInput placeholder="Name" value="" type="text" id="name" formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select type="text" id="status" formControlName="status">
+              <mat-option matInput *ngFor="let status of possible_status" [(value)]="status.value">
+                {{status.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="grant-full-width">
+            <input matInput placeholder="Grantor" value="" type="text" id="grantor" formControlName="grantor">
+          </mat-form-field>
+
+          <mat-form-field class="grant-full-width">
+            <input matInput placeholder="Location" value="" type="text" id="location" formControlName="location">
+          </mat-form-field>
+
+          <mat-form-field class="grant-full-width">
+            <textarea name="" id="" cols="5" rows="10" matInput placeholder="Description" value="" type="text"
+              id="description" formControlName="description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field class="grant-full-width">
+            <input matInput placeholder="Amount ($)" value="" type="number" id="amount" formControlName="amount">
+          </mat-form-field>
+
+          <button mat-button class="grant-btn" [disabled]="!grantCreateForm.valid" type="submit">Add Grant</button>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+      <div class="image-container">
+        <img src="assets/images/fh-new-grant.jpeg" alt="">
+      </div>
+    </div>
+  </div>
+
+</div>
