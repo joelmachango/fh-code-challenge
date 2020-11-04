@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Grant } from "../shared/grant.model";
 
 export interface Status {
   value: string;
@@ -12,6 +13,7 @@ export interface Status {
   styleUrls: ["./grant-create.component.scss"],
 })
 export class GrantCreateComponent implements OnInit {
+  grant: Grant;
   grantCreateForm: FormGroup;
 
   possible_status: Status[] = [
