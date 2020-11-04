@@ -7,7 +7,8 @@
         </div>
         <form class="grant-form">
           <mat-form-field class="grant-full-width">
-            <input matInput placeholder="Name" value="" type="text" id="name" [(ngModel)]="grant.name" name="name">
+            <input *ngIf="grant.name" matInput placeholder="Name" value="" type="text" autofocus id="name"
+              [(ngModel)]="grant.name" name="name">
           </mat-form-field>
           <mat-form-field>
             <mat-label>Status</mat-label>
