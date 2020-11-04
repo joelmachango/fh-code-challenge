@@ -23,6 +23,7 @@ import { GrantListComponent } from "./grant-list/grant-list.component";
 import { GrantManageComponent } from "./grant-manage/grant-manage.component";
 import { GrantSearchComponent } from "./grant-search/grant-search.component";
 import { GrantComponent } from "./grant.component";
+import { GrantService } from "./shared/grant.service";
 
 const routes: Routes = [
   {
@@ -63,6 +64,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [GrantService],
 })
 export class GrantModule {}

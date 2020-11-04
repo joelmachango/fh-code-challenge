@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Grant } from "../shared/grant.model";
+import { GrantService } from "../shared/grant.service";
 
 const ELEMENT_DATA: Grant[] = [
   {
@@ -26,9 +27,17 @@ const ELEMENT_DATA: Grant[] = [
   styleUrls: ["./grant-list.component.scss"],
 })
 export class GrantListComponent implements OnInit {
-  constructor() {}
+  grants: Grant[] = [];
+  constructor(private grantService: GrantService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const grantsObservable = this.grantService.getGrants();
+
+    grantsObservable.subscribe((grants: Grant[]) => {
+      this.grants = grants;
+      console.log(this.grants);
+    });
+  }
 
   displayedColumns = [
     "name",
