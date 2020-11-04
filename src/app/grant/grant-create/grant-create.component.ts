@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 export interface Status {
   value: string;
@@ -18,20 +13,6 @@ export interface Status {
 })
 export class GrantCreateComponent implements OnInit {
   grantCreateForm: FormGroup;
-  errors: any[] = [];
-  notifyMessage: string = "";
-
-  myControl = new FormControl();
-  options: string[] = [
-    "In Consideration",
-    "Development",
-    "Submited",
-    "Did not submit",
-    "Implementation",
-    "Not awarded",
-    "Closed out",
-    "Closed",
-  ];
 
   possible_status: Status[] = [
     { value: "In Consideration", viewValue: "In Consideration" },
@@ -58,10 +39,6 @@ export class GrantCreateComponent implements OnInit {
       description: ["", Validators.required],
       amount: ["", Validators.required],
     });
-  }
-
-  onStatusChange(status) {
-    console.log(status);
   }
 
   addGrant() {
