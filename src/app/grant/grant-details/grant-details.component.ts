@@ -49,10 +49,13 @@ export class GrantDetailsPopupConponent {
   }
 
   deleteGrant() {
+    console.log("Delete Grant");
+
     window.alert("Grant successfully deleted!");
-    this.toastr.success("Delete Grant!", "Grant successfully deleted");
+    this.toastr.success("Delete Grant!", "Grant successfully deleted", {
+      timeOut: 2000,
+    });
     this.closeDialog();
     this.router.navigate(["/grants"]);
-    console.log("Delete Grant");
   }
 }
