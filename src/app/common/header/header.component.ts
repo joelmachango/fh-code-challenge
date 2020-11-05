@@ -9,7 +9,7 @@ import { AuthService } from "../../../app/auth/shared/auth.service";
 export class HeaderComponent implements OnInit {
   isAuthenticated: Boolean = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService) {}
 
   ngOnInit() {
     // console.log(this.auth.isAuthenticated())
