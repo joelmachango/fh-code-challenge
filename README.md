@@ -1,27 +1,68 @@
-# FhCodeChallenge
+### _Landing page_
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.25.
+![Landing Page](src/assets/images/screenshot.png)
 
-## Development server
+# fh Grants Management Application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Like many other international non-governmental organizations (INGO), Food for the Hungry (FH) receives grants from various sources to aid it in it's core mission of ending hunger worldwide. These grants are normally utilized in various projects as indicated here https://www.fh.org/grant-projects/
 
-## Code scaffolding
+FH desires to develop a grants system to be used for managing grant related data from a grants inception through its termination. Typically a grant in FH is made up of the the following fields:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Grant Name: Name of the grant
+2. Grant Status: (In Consideration, Development, Submitted, Did Not Submit, Implementation, Not Awarded, Closeout, Closed)
+3. Grantor: (Organization issuing the grant e.g USAID, World Bank, GIZ, UN etc)
+4. Geographic Location: (A country where the grant is to be implemented)
+5. Grant Description: (Short description of the grant)
+6. Grant Amount: The total amount being granted in US Dollars
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Authentication
 
-## Running unit tests
+- Greate a Grant
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- View a Grant's Details
 
-## Running end-to-end tests
+- Update a Grant
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Delete a Grant
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+_Download the project to your local computer through_
+
+- Download a zip folder of this repository
+
+### Alternatively
+
+_Run the following command_
+
+```
+$ git clone git@github.com:joelmachango/fh-code-challenge.git
+```
+
+## Technologies & Languages
+
+**Angular 8.2.14**
+
+**Laravel 5.5.**
+
+**Angular Material**
+
+**Version control (Git)** [https://git-scm.com/](url)
+
+**HTML5**
+
+**CSS3**
+
+## Authors
+
+Joel Machango
+
+## License
+
+MIT
+
+## Acknowledgement
+
+fh.org - Code Challenge
