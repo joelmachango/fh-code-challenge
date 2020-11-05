@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-login",
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -40,15 +42,22 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      (token) => {
-        console.log(token.token);
-        const loginToken = token.token;
-        localStorage.setItem("fh_auth", loginToken);
-        // this.auth.saveToken(token);
+      (res) => {
+        const loginToken = res.token;
+        this.auth.saveToken(loginToken);
         this.router.navigate(["/grants"]);
+
+        let tokenInfo = this.auth.decodeToken(loginToken);
+        localStorage.setItem("fh_info", JSON.stringify(tokenInfo));
+
+        let expireDate = tokenInfo.exp;
+        localStorage.setItem("fh_expire", expireDate);
       },
       (errorResponse) => {
-        this.errors = errorResponse.error.errors;
+        console.log(errorResponse.error.message);
+        this.toastr.error(errorResponse.error.message, "Login Failed", {
+          timeOut: 3000,
+        });
       }
     );
   }

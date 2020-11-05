@@ -33,19 +33,18 @@ export class GrantListComponent implements OnInit {
     this.grantService.getGrants().subscribe(
       (res) => {
         console.log(res.grants);
-        // this.grants = res.grants;
-        // console.log(this.grants);
+        this.grants = res.grants;
 
-        this.grants = this.fakegrants;
+        // this.grants = this.fakegrants;
 
         const ELEMENT_DATA = this.grants;
 
         this.displayedColumns = [
           "name",
-          "status",
-          "grantor",
-          "location",
-          "amount",
+          // "status",
+          // "grantor",
+          // "location",
+          // "amount",
           "star",
         ];
         this.dataSource = ELEMENT_DATA;

@@ -12,13 +12,22 @@ import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
 import { AuthComponent } from "./auth.component";
 
+import { AuthService } from "./shared/auth.service";
+import { AuthGuard } from "./shared/auth.guard";
+import { TokenInterceptor } from "./shared/token.interceptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+
 const routes: Routes = [
   {
     path: "",
     component: AuthComponent,
     children: [
-      { path: "register", component: RegisterComponent },
-      { path: "login", component: LoginComponent },
+      {
+        path: "register",
+        component: RegisterComponent,
+        canActivate: [AuthGuard],
+      },
+      { path: "login", component: LoginComponent, canActivate: [AuthGuard] },
     ],
   },
 ];
@@ -33,6 +42,11 @@ const routes: Routes = [
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
 })
 export class AuthModule {}

@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~ngx-toastr/toastr.css";
+@import "~ngx-toastr/toastr";
+
+#toast-container > div {
+  opacity: 1;
+}
 
 $a-tags: "a, a:active, a:hover, a:visited";
 $a-tags-hover: "a:active, a:hover";
@@ -79,4 +83,10 @@ body {
 .grant-auth-p p {
   display: block !important;
   padding-top: 10px;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
 }
