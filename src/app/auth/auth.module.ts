@@ -14,6 +14,8 @@ import { AuthComponent } from "./auth.component";
 
 import { AuthService } from "./shared/auth.service";
 import { AuthGuard } from "./shared/auth.guard";
+import { TokenInterceptor } from "./shared/token.interceptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 const routes: Routes = [
   {
@@ -41,6 +43,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
 })
 export class AuthModule {}
