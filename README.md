@@ -2,9 +2,17 @@
 
 ![Landing Page](src/assets/images/screenshot.png)
 
+
+
 # fh Grants Management Application
 
 Like many other international non-governmental organizations (INGO), Food for the Hungry (FH) receives grants from various sources to aid it in it's core mission of ending hunger worldwide. These grants are normally utilized in various projects as indicated here https://www.fh.org/grant-projects/
+
+This system is used for managing grant related data from **Inception** through to **Termination**.
+
+## Database Entity Relationship Diagram(ERD) 
+<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embeddedchart/a70acd59-77bf-45c4-8c8b-f0612ae7a9e6" id="OQxLc9RowxLZ"></iframe></div>
+
 
 ## Usage
 
@@ -38,17 +46,25 @@ $ git clone git@github.com:joelmachango/fh-code-challenge.git
 
 **Laravel 5.5.**
 
+**MySQL**
+
 **Angular Material**
 
-**Version control (Git)** [https://git-scm.com/](url)
+**Version control (Git)** [https://git-scm.com/](https://git-scm.com/)
 
 **HTML5**
 
-**CSS3**
+**SCSS**
+
+**JavaScript**
+
+**TypeScript**
+
+**PHP**
 
 ## Authors
 
-Joel Machango
+[Joel Machango](https://joelmachango.com/)
 
 ## License
 
@@ -56,4 +72,4 @@ MIT
 
 ## Acknowledgement
 
-fh.org - Code Challenge
+[fh.org](https://www.fh.org/) - Code Challenge
