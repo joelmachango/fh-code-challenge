@@ -11,6 +11,18 @@ export class GrantListComponent implements OnInit {
   grants: Grant[] = [];
   displayedColumns: any;
   dataSource: any;
+
+  fakegrants = [
+    {
+      id: 1,
+      status: "In Consideration",
+      name: "Provision of primary health services for refugees.",
+      grantor: "USAID",
+      location: "Nairobi",
+      amount: "$15,00,000",
+    },
+  ];
+
   constructor(private grantService: GrantService) {}
 
   ngOnInit() {
@@ -20,8 +32,12 @@ export class GrantListComponent implements OnInit {
   loadGrants() {
     this.grantService.getGrants().subscribe(
       (res) => {
-        this.grants = res.grants;
+        console.log(res.grants);
+        // this.grants = res.grants;
         // console.log(this.grants);
+
+        this.grants = this.fakegrants;
+
         const ELEMENT_DATA = this.grants;
 
         this.displayedColumns = [

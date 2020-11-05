@@ -36,3 +36,7 @@ Route::delete('/grant/{id}', [
 Route::post('/user', [
   'uses' => 'UserController@signup'
 ]);
+
+Route::post('/authenticate', [
+  'uses' => 'AuthenticationController@authenticate'
+]);
