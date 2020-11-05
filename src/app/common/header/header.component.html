@@ -86,6 +86,9 @@
         </ng-container>
         <ng-container *ngIf="auth.isAuthenticated()">
           <li class="nav-item">
+            <a style="cursor: pointer; margin-right: 10px;" class="nav-link" (click)="logout()">Logout</a>
+          </li>
+          <li class="nav-item">
             <button mat-button class="btn grant-btn shadow-none'" type="submit" [routerLink]="['/grants/new']"
               routerLinkActive="router-link-active">Add Grant</button>
           </li>
