@@ -10,7 +10,7 @@ This system is used for managing grant related data from **Inception** through t
 
 ## Database Entity Relationship Diagram(ERD)
 
-![ERD](src/assets/images/fh-red.png)
+![ERD](src/assets/images/fh-erd.png)
 
 ## Usage
 
