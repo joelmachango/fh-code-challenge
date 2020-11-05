@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-login",
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -52,7 +54,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("fh_expire", expireDate);
       },
       (errorResponse) => {
-        console.log((this.errors = errorResponse.error.errors));
+        console.log(errorResponse.error.message);
+        this.toastr.error(errorResponse.error.message, "Login Failed", {
+          timeOut: 3000,
+        });
       }
     );
   }
