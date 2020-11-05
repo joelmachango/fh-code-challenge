@@ -44,6 +44,12 @@ export class LoginComponent implements OnInit {
         const loginToken = res.token;
         this.auth.saveToken(loginToken);
         this.router.navigate(["/grants"]);
+
+        let tokenInfo = this.auth.decodeToken(loginToken);
+        localStorage.setItem("fh_info", JSON.stringify(tokenInfo));
+
+        let expireDate = tokenInfo.exp;
+        localStorage.setItem("fh_expire", expireDate);
       },
       (errorResponse) => {
         console.log((this.errors = errorResponse.error.errors));

@@ -1,17 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  // private decodedToken;
-
-  constructor(private http: HttpClient) {
-    // this.decodedToken = JSON.parse(localStorage.getItem("fh-auth"));
-    // console.log(this.decodedToken);
-  }
+  constructor(private http: HttpClient) {}
 
   public isAuthenticated(): boolean {
     return false;
@@ -30,5 +26,11 @@ export class AuthService {
     return token;
   }
 
-  private decodeToken() {}
+  public decodeToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
+  }
 }
