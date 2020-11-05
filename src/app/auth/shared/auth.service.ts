@@ -6,7 +6,12 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  // private decodedToken;
+
+  constructor(private http: HttpClient) {
+    // this.decodedToken = JSON.parse(localStorage.getItem("fh-auth"));
+    // console.log(this.decodedToken);
+  }
 
   public isAuthenticated(): boolean {
     return false;
@@ -21,9 +26,9 @@ export class AuthService {
   }
 
   public saveToken(token: string) {
-    // this.decodedToken = jwt.decode(token);
     localStorage.setItem("fh_auth", token);
-    // localStorage.setItem("fh_meta", JSON.stringify(this.decodedToken));
     return token;
   }
+
+  private decodeToken() {}
 }

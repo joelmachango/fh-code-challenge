@@ -40,15 +40,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      (token) => {
-        console.log(token.token);
-        const loginToken = token.token;
-        localStorage.setItem("fh_auth", loginToken);
-        // this.auth.saveToken(token);
+      (res) => {
+        const loginToken = res.token;
+        this.auth.saveToken(loginToken);
         this.router.navigate(["/grants"]);
       },
       (errorResponse) => {
-        this.errors = errorResponse.error.errors;
+        console.log((this.errors = errorResponse.error.errors));
       }
     );
   }
