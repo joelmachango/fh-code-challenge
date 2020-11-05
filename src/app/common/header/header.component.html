@@ -84,12 +84,10 @@
             <a class="nav-link" [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a>
           </li>
         </ng-container>
-        <ng-container *ngIf="!auth.isAuthenticated()">
-          <!-- <li class="nav-item">
-            <p class="nav-link">Joel Machango</p>
-          </li> -->
+        <ng-container *ngIf="auth.isAuthenticated()">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/grants/new']" routerLinkActive="router-link-active">Add Grant</a>
+            <button mat-button class="btn grant-btn shadow-none'" type="submit" [routerLink]="['/grants/new']"
+              routerLinkActive="router-link-active">Add Grant</button>
           </li>
         </ng-container>
       </ul>

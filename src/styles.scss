@@ -84,3 +84,9 @@ body {
   display: block !important;
   padding-top: 10px;
 }
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}

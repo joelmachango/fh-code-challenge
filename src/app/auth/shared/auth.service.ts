@@ -2,16 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import jwt_decode from "jwt-decode";
+import * as moment from "moment";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-
-  public isAuthenticated(): boolean {
-    return false;
-  }
 
   public register(userData: any): Observable<any> {
     return this.http.post("http://127.0.0.1:8000/api/user", userData);
@@ -32,5 +29,10 @@ export class AuthService {
     } catch (Error) {
       return null;
     }
+  }
+
+  public isAuthenticated() {
+    let tokenExpireTime = moment.unix(+localStorage.getItem("fh_expire"));
+    return moment().isBefore(tokenExpireTime);
   }
 }
