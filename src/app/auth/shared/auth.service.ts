@@ -19,4 +19,11 @@ export class AuthService {
   public login(userData: any): Observable<any> {
     return this.http.post("http://127.0.0.1:8000/api/authenticate", userData);
   }
+
+  public saveToken(token: string) {
+    // this.decodedToken = jwt.decode(token);
+    localStorage.setItem("fh_auth", token);
+    // localStorage.setItem("fh_meta", JSON.stringify(this.decodedToken));
+    return token;
+  }
 }
