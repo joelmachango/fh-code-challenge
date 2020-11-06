@@ -8,20 +8,9 @@ import { GrantService } from "../shared/grant.service";
   styleUrls: ["./grant-list.component.scss"],
 })
 export class GrantListComponent implements OnInit {
-  grants: Grant[] = [];
+  grants: Grant;
   displayedColumns: any;
   dataSource: any;
-
-  fakegrants = [
-    {
-      id: 1,
-      status: "In Consideration",
-      name: "Provision of primary health services for refugees.",
-      grantor: "USAID",
-      location: "Nairobi",
-      amount: "$15,00,000",
-    },
-  ];
 
   constructor(private grantService: GrantService) {}
 
@@ -35,16 +24,14 @@ export class GrantListComponent implements OnInit {
         console.log(res.grants);
         this.grants = res.grants;
 
-        // this.grants = this.fakegrants;
-
         const ELEMENT_DATA = this.grants;
 
         this.displayedColumns = [
           "name",
-          // "status",
-          // "grantor",
-          // "location",
-          // "amount",
+          "status",
+          "grantor",
+          "location",
+          "amount",
           "star",
         ];
         this.dataSource = ELEMENT_DATA;

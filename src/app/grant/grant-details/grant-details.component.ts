@@ -1,7 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
-import { Router } from "@angular/router";
+import { Component, OnInit, Inject } from "@angular/core";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { Grant } from "../shared/grant.model";
+import { GrantService } from "../shared/grant.service";
+
+export interface DialogData {
+  grand_id: number;
+}
 
 @Component({
   selector: "app-grant-details",
@@ -9,26 +19,41 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./grant-details.component.scss"],
 })
 export class GrantDetailsComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  grand_id: string;
 
-  openDialog() {
-    console.log(this.grant.id);
-    this.dialog.open(GrantDetailsPopupConponent, {});
+  param: any;
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private grantService: GrantService
+  ) {
+    this.param = this.route.snapshot.params;
   }
 
-  grant = {
-    id: 1,
-    name: "Middle East refugee Crisis",
-    status: "Development",
-    grantor: "USAID",
-    location: "Lebanon",
-    description:
-      "Providing staff, technical support and other forms or children as well as skill training for adults.",
-    amount: 6500000,
-  };
+  openDialog() {
+    let grantId = this.param.grantId;
+    this.dialog.open(GrantDetailsPopupConponent, {
+      data: { grand_id: grantId },
+    });
+    console.log(grantId);
+  }
+
+  grant = {};
 
   ngOnInit() {
-    console.log(this.grant);
+    let grantId = this.param.grantId;
+    this.getGrant(grantId);
+  }
+
+  getGrant(grantId: number) {
+    this.grantService.getGrantById(grantId).subscribe(
+      (grant: Grant) => {
+        this.grant = grant;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
 
@@ -41,21 +66,38 @@ export class GrantDetailsPopupConponent {
   constructor(
     public dialog: MatDialog,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private grantService: GrantService,
+
+    public dialogRef: MatDialogRef<GrantDetailsPopupConponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
   closeDialog() {
     this.dialog.closeAll();
   }
 
-  deleteGrant() {
-    console.log("Delete Grant");
+  ngOnInit() {}
 
-    window.alert("Grant successfully deleted!");
-    this.toastr.success("Delete Grant!", "Grant successfully deleted", {
-      timeOut: 2000,
-    });
-    this.closeDialog();
-    this.router.navigate(["/grants"]);
+  deleteGrant(grantId: number) {
+    console.log("DeleteID " + this.data.grand_id);
+    grantId = this.data.grand_id;
+    console.log("Delete");
+    this.grantService.deleteGrant(grantId).subscribe(
+      (res) => {
+        console.log(res);
+        this.toastr.success("Delete Grant!", res.message, {
+          timeOut: 3000,
+        });
+        this.closeDialog();
+        this.router.navigate(["/grants"]);
+      },
+      (err) => {
+        console.log(err);
+        this.toastr.error(" Error Deleting Grant", "Server Error!", {
+          timeOut: 3000,
+        });
+      }
+    );
   }
 }

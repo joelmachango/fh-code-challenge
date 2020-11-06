@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Grant;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class GrantController extends Controller
 {
@@ -11,6 +12,11 @@ class GrantController extends Controller
   {
     $grant = new Grant();
     $grant->name = $request->input('name');
+    $grant->status = $request->input('status');
+    $grant->grantor = $request->input('grantor');
+    $grant->location = $request->input('location');
+    $grant->description = $request->input('description');
+    $grant->amount = $request->input('amount');
     $grant->save();
     return response()->json(['grant' => $grant], 201);
   }
@@ -24,6 +30,12 @@ class GrantController extends Controller
     return response()->json($response, 200);
   }
 
+  public function getGrant($id)
+  {
+    $grant = Grant::find($id);
+    return $grant;
+  }
+
   public function putGrant(Request $request, $id)
   {
     $grant = Grant::find($id);
@@ -31,6 +43,11 @@ class GrantController extends Controller
       return response()->json(['message' => 'Document not found'], 404);
     }
     $grant->name = $request->input('name');
+    $grant->status = $request->input('status');
+    $grant->grantor = $request->input('grantor');
+    $grant->location = $request->input('location');
+    $grant->description = $request->input('description');
+    $grant->amount = $request->input('amount');
     $grant->save();
     return response()->json(['grant' => $grant], 200);
   }
@@ -39,6 +56,6 @@ class GrantController extends Controller
   {
     $grant = Grant::find($id);
     $grant->delete();
-    return response()->json(['message' => 'Grant name deleted'], 200);
+    return response()->json(['message' => 'Grant deleted'], 200);
   }
 }
