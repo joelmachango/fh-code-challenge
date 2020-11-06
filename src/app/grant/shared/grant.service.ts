@@ -16,4 +16,8 @@ export class GrantService {
   public createGrant(grant: Grant): Observable<any> {
     return this.http.post("http://127.0.0.1:8000/api/grant", grant);
   }
+
+  public deleteGrant(grantId: number): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/api/grant/${grantId}`);
+  }
 }
