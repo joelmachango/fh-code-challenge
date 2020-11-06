@@ -9,6 +9,10 @@ import { Grant } from "./grant.model";
 export class GrantService {
   constructor(private http: HttpClient) {}
 
+  public getGrantById(grantId: any): Observable<any> {
+    return this.http.get("http://127.0.0.1:8000/api/grants/" + grantId);
+  }
+
   public getGrants(): Observable<any> {
     return this.http.get("http://127.0.0.1:8000/api/grants");
   }

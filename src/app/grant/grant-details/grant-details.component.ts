@@ -6,6 +6,7 @@ import {
 } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { Grant } from "../shared/grant.model";
 import { GrantService } from "../shared/grant.service";
 
 export interface DialogData {
@@ -21,7 +22,11 @@ export class GrantDetailsComponent implements OnInit {
   grand_id: string;
 
   param: any;
-  constructor(public dialog: MatDialog, private route: ActivatedRoute) {
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private grantService: GrantService
+  ) {
     this.param = this.route.snapshot.params;
     console.log(this.param.grantId);
   }
@@ -34,18 +39,25 @@ export class GrantDetailsComponent implements OnInit {
     console.log(grantId);
   }
 
-  grant = {
-    id: 1,
-    name: "Middle East refugee Crisis",
-    status: "Development",
-    grantor: "USAID",
-    location: "Lebanon",
-    description:
-      "Providing staff, technical support and other forms or children as well as skill training for adults.",
-    amount: 6500000,
-  };
+  grant = {};
 
-  ngOnInit() {}
+  ngOnInit() {
+    let grantId = this.param.grantId;
+    console.log("Grant ID " + grantId);
+    this.getGrant(grantId);
+  }
+
+  getGrant(grantId: number) {
+    this.grantService.getGrantById(grantId).subscribe(
+      (grant: Grant) => {
+        console.log(grant);
+        this.grant = grant;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }
 
 @Component({
@@ -68,7 +80,9 @@ export class GrantDetailsPopupConponent {
     this.dialog.closeAll();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // let grantId = this.data.grand_id;
+  }
 
   deleteGrant(grantId: number) {
     console.log("DeleteID " + this.data.grand_id);
