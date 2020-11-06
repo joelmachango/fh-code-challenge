@@ -38,7 +38,7 @@ export class GrantDetailsComponent implements OnInit {
     console.log(grantId);
   }
 
-  grant = {};
+  grant: Grant = {};
 
   ngOnInit() {
     let grantId = this.param.grantId;
