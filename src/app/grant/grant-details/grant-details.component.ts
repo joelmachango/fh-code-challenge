@@ -63,6 +63,8 @@ export class GrantDetailsComponent implements OnInit {
   styleUrls: ["./grant-details.component.scss"],
 })
 export class GrantDetailsPopupConponent {
+  grandId: any;
+
   constructor(
     public dialog: MatDialog,
     private toastr: ToastrService,
