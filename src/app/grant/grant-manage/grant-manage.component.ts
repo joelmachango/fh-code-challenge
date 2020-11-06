@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { Grant } from "../shared/grant.model";
+import { GrantService } from "../shared/grant.service";
 
 export interface Status {
   value: string;
@@ -12,7 +16,7 @@ export interface Status {
   styleUrls: ["./grant-manage.component.scss"],
 })
 export class GrantManageComponent implements OnInit {
-  grantCreateForm: FormGroup;
+  grantId: any;
 
   possible_status: Status[] = [
     { value: "In Consideration", viewValue: "In Consideration" },
@@ -24,36 +28,45 @@ export class GrantManageComponent implements OnInit {
     { value: "Closed", viewValue: "Closed" },
   ];
 
-  grant = {
-    id: 1,
-    name: "Middle East refugee Crisis",
-    status: "Development",
-    grantor: "USAID",
-    location: "Lebanon",
-    description:
-      "Providing staff, technical support and other forms or children as well as skill training for adults.",
-    amount: 6500000,
-  };
+  grant: Grant = {};
 
-  constructor(private fb: FormBuilder) {}
+  param: any;
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private grantService: GrantService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
+    this.param = this.route.snapshot.params;
+    this.grantId = this.param.grantId;
+  }
 
   ngOnInit() {
+    let grantId = this.param.grantId;
+    this.getGrant(grantId);
+    this.grantId = grantId;
+  }
+
+  getGrant(grantId: number) {
+    this.grantService.getGrantById(grantId).subscribe(
+      (grant: Grant) => {
+        this.grant = grant;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateGrant() {
+    console.log(this.grantId);
     console.log(this.grant);
-    this.initForm();
-  }
-
-  initForm() {
-    this.grantCreateForm = this.fb.group({
-      name: ["", Validators.required],
-      status: ["", Validators.required],
-      grantor: ["", Validators.required],
-      location: ["", Validators.required],
-      description: ["", Validators.required],
-      amount: ["", Validators.required],
-    });
-  }
-
-  addGrant() {
-    console.log(this.grantCreateForm.value);
+    this.grantService
+      .updateGrant(this.grantId, this.grant)
+      .subscribe((grant: Grant) => {
+        console.log(grant);
+      });
   }
 }

@@ -28,7 +28,6 @@ export class GrantDetailsComponent implements OnInit {
     private grantService: GrantService
   ) {
     this.param = this.route.snapshot.params;
-    console.log(this.param.grantId);
   }
 
   openDialog() {
@@ -43,14 +42,12 @@ export class GrantDetailsComponent implements OnInit {
 
   ngOnInit() {
     let grantId = this.param.grantId;
-    console.log("Grant ID " + grantId);
     this.getGrant(grantId);
   }
 
   getGrant(grantId: number) {
     this.grantService.getGrantById(grantId).subscribe(
       (grant: Grant) => {
-        console.log(grant);
         this.grant = grant;
       },
       (err) => {
@@ -80,9 +77,7 @@ export class GrantDetailsPopupConponent {
     this.dialog.closeAll();
   }
 
-  ngOnInit() {
-    // let grantId = this.data.grand_id;
-  }
+  ngOnInit() {}
 
   deleteGrant(grantId: number) {
     console.log("DeleteID " + this.data.grand_id);
