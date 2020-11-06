@@ -25,6 +25,10 @@ Route::get('/grants', [
   'uses' => 'GrantController@getGrants'
 ]);
 
+Route::get('/grants/{id}', [
+  'uses' => 'GrantController@getGrant'
+]);
+
 Route::put('/grant/{id}', [
   'uses' => 'GrantController@putGrant'
 ]);

@@ -13,10 +13,16 @@ class CreateGrantTable extends Migration
    */
   public function up()
   {
+    Schema::dropIfExists('grants');
     Schema::create('grants', function (Blueprint $table) {
       $table->increments('id');
       $table->timestamps();
       $table->text('name');
+      $table->text('status');
+      $table->text('grantor');
+      $table->text('location');
+      $table->text('description');
+      $table->text('amount');
     });
   }
 
