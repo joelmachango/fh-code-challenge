@@ -12,4 +12,8 @@ export class GrantService {
   public getGrants(): Observable<any> {
     return this.http.get("http://127.0.0.1:8000/api/grants");
   }
+
+  public createGrant(grant: Grant): Observable<any> {
+    return this.http.post("http://127.0.0.1:8000/api/grant", grant);
+  }
 }
