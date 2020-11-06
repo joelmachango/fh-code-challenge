@@ -30,27 +30,10 @@ class GrantController extends Controller
     return response()->json($response, 200);
   }
 
-  public function getGrant(Response $response, $id)
+  public function getGrant($id)
   {
-    $grants = Grant::all();
-    $grant = $grants->get($id);
-
-    $response = [
-      'grant' => $grant
-    ];
-    return response()->json(['grant' => $grant], 200);
-
-    // $grant = Grant::find($id);
-
-    // if (!$grant) {
-    //   return response()->json(['message' => 'Document not found'], 404);
-    // }
-    // $grant->name = $response->output('name');
-
-    // $response = [
-    //   'grants' => $grants
-    // ];
-    // return response()->json($response, 200);
+    $grant = Grant::find($id);
+    return $grant;
   }
 
   public function putGrant(Request $request, $id)
