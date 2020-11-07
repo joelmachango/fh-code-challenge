@@ -4,19 +4,22 @@ import { Observable } from "rxjs";
 import jwt_decode from "jwt-decode";
 import * as moment from "moment";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
+  apiURL: string = environment.apiUrl;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   public register(userData: any): Observable<any> {
-    return this.http.post("http://127.0.0.1:8000/api/user", userData);
+    return this.http.post(`${this.apiURL}/api/user`, userData);
   }
 
   public login(userData: any): Observable<any> {
-    return this.http.post("http://127.0.0.1:8000/api/authenticate", userData);
+    return this.http.post(`${this.apiURL}/api/authenticate`, userData);
   }
 
   public saveToken(token: string) {
