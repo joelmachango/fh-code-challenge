@@ -2,10 +2,11 @@
   <div class="row">
     <div class="col">
       <div class="auth-from">
-        <div class="title auth-title">
-          <h1>Update {{grant.name | titlecase}} Grant Profile</h1>
-        </div>
-        <div>
+        <mat-spinner *ngIf="!grant.name" [diameter]="40"></mat-spinner>
+        <div *ngIf="grant.name">
+          <div class="title auth-title">
+            <h1>Update {{grant.name | titlecase}} Grant Profile</h1>
+          </div>
           <form *ngIf="grant.name" #updateForm="ngForm" class="grant-form">
             <mat-form-field class="grant-full-width">
               <input *ngIf="grant.name" matInput placeholder="Name" value="" type="text" autofocus id="name"

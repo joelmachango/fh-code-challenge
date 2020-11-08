@@ -2,34 +2,34 @@
   <div class="row">
     <div class="col">
       <div class="auth-from">
-        <div class="title auth-title">
-          <h1 name="name">{{grant.name | titlecase}} Grant Profile</h1>
+        <mat-spinner *ngIf="!grant.name" [diameter]="40"></mat-spinner>
+        <div *ngIf="grant.name">
+          <div class="title auth-title">
+            <h1 name="name">{{grant.name | titlecase}} Grant Profile</h1>
+          </div>
+          <mat-list>
+            <span class="details-title">Name:</span>
+            <p name="name">{{grant.name}}</p>
+            <mat-divider></mat-divider>
+            <span class="details-title">Status:</span>
+            <p name="status">{{grant.status}}</p>
+            <mat-divider></mat-divider>
+            <span class="details-title">Grantor:</span>
+            <p name="grantor">{{grant.grantor}}</p>
+            <mat-divider></mat-divider>
+            <span class="details-title">Location:</span>
+            <p name="location">{{grant.location}}</p>
+            <mat-divider></mat-divider>
+            <span class="details-title">Description:</span>
+            <p name="description">{{grant.description}}</p>
+            <mat-divider></mat-divider>
+            <span class="details-title">Amount:</span>
+            <p name="amount">{{grant.amount | currency}}</p>
+          </mat-list>
+          <button style="margin-right: 20px;" mat-button class="grant-btn update-btn" type="submit" name="id"
+            routerLink="/grants/manage/{{grant.id}}">Update</button>
+          <button mat-button class="grant-btn delete-btn" (click)="openDialog()">Delete</button>
         </div>
-
-        <mat-list>
-          <span class="details-title">Name:</span>
-          <p name="name">{{grant.name}}</p>
-          <mat-divider></mat-divider>
-          <span class="details-title">Status:</span>
-          <p name="status">{{grant.status}}</p>
-          <mat-divider></mat-divider>
-          <span class="details-title">Grantor:</span>
-          <p name="grantor">{{grant.grantor}}</p>
-          <mat-divider></mat-divider>
-          <span class="details-title">Location:</span>
-          <p name="location">{{grant.location}}</p>
-          <mat-divider></mat-divider>
-          <span class="details-title">Description:</span>
-          <p name="description">{{grant.description}}</p>
-          <mat-divider></mat-divider>
-          <span class="details-title">Amount:</span>
-          <p name="amount">{{grant.amount | currency}}</p>
-        </mat-list>
-
-        <button style="margin-right: 20px;" mat-button class="grant-btn update-btn" type="submit" name="id"
-          routerLink="/grants/manage/{{grant.id}}">Update</button>
-        <button mat-button class="grant-btn delete-btn" (click)="openDialog()">Delete</button>
-
       </div>
     </div>
     <div class="col">
