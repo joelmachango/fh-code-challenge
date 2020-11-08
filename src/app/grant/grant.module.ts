@@ -11,6 +11,7 @@ import {
   MatDividerModule,
   MatListModule,
   MatDialogModule,
+  MatProgressSpinnerModule,
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -72,6 +73,7 @@ const routes: Routes = [
     MatDividerModule,
     MatListModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
   ],
