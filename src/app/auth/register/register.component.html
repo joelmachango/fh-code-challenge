@@ -25,7 +25,13 @@
               id="confirmPassword" formControlName="confirmPassword">
           </mat-form-field>
 
-          <button mat-button class="grant-btn" [disabled]="!registerForm.valid" type="submit">Register</button>
+          <button mat-button class="grant-btn" [disabled]="!registerForm.valid" type="submit">
+            Register
+          </button>
+          <div class="btn-spinner" *ngIf="registering">
+            <mat-spinner [diameter]="40"></mat-spinner>
+          </div>
+
         </form>
 
         <br>

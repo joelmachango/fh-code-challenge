@@ -10,6 +10,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
+  logingin: Boolean;
   loginForm: FormGroup;
   errors: any[] = [];
   notifyMessage: string = "";
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.logingin = true;
     this.auth.login(this.loginForm.value).subscribe(
       (res) => {
         const loginToken = res.token;
@@ -52,8 +54,11 @@ export class LoginComponent implements OnInit {
 
         let expireDate = tokenInfo.exp;
         localStorage.setItem("fh_expire", expireDate);
+
+        this.logingin = false;
       },
       (errorResponse) => {
+        this.logingin = false;
         console.log(errorResponse.error.message);
         this.toastr.error(errorResponse.error.message, "Login Failed", {
           timeOut: 3000,
