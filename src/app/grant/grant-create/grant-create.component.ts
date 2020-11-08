@@ -19,6 +19,7 @@ export interface Status {
 export class GrantCreateComponent implements OnInit {
   grant: Grant;
   grantCreateForm: FormGroup;
+  creating: Boolean;
 
   possible_status: Status[] = [
     { value: "In Consideration", viewValue: "In Consideration" },
@@ -53,6 +54,7 @@ export class GrantCreateComponent implements OnInit {
   }
 
   addGrant() {
+    this.creating = true;
     this.grantService.createGrant(this.grantCreateForm.value).subscribe(
       (res) => {
         if (res) {
@@ -63,14 +65,18 @@ export class GrantCreateComponent implements OnInit {
               timeOut: 3000,
             }
           );
+          this.creating = false;
           this.router.navigate(["grants/", res.grant.id]);
         } else {
           console.log("Try again");
+          this.creating = false;
           this.toastr.info("Please try creating the Grant Again", "Try Again!");
         }
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse);
+        this.creating = false;
+        this.toastr.error("Please try creating the Grant Again", "Try Again!");
       }
     );
   }

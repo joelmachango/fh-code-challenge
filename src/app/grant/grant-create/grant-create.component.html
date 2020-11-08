@@ -42,6 +42,9 @@
 
           <button mat-button class="grant-btn" [disabled]="!grantCreateForm.valid" type="submit">Add Grant</button>
         </form>
+        <div class="btn-spinner" *ngIf="creating">
+          <mat-spinner [diameter]="40"></mat-spinner>
+        </div>
       </div>
     </div>
     <div class="col">
