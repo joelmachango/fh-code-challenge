@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../shared/auth.service";
 
 @Component({
@@ -9,14 +10,16 @@ import { AuthService } from "../shared/auth.service";
   styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
+  registering: Boolean;
   registerForm: FormGroup;
-  errors: any[] = [];
+  errors: any;
   notifyMessage: string = "";
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -41,16 +44,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.registering = true;
     this.auth.register(this.registerForm.value).subscribe(
       () => {
         this.router.navigate(["/login", { registered: "success" }]);
-        console.log("success");
+        this.registering = false;
       },
       (errorResponse) => {
-        console.log(errorResponse.error.errors);
-        this.errors = errorResponse.error.errors;
+        this.errors = errorResponse.error.errors.email[0];
+        console.log(this.errors);
+        this.toastr.error(this.errors, "Registration Error!");
+        this.registering = false;
       }
     );
-    console.log(this.registerForm.value);
   }
 }

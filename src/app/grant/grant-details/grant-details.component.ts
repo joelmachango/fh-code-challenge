@@ -20,7 +20,7 @@ export interface DialogData {
 })
 export class GrantDetailsComponent implements OnInit {
   grand_id: string;
-
+  grant: Grant = {};
   param: any;
   constructor(
     public dialog: MatDialog,
@@ -37,8 +37,6 @@ export class GrantDetailsComponent implements OnInit {
     });
     console.log(grantId);
   }
-
-  grant: Grant = {};
 
   ngOnInit() {
     let grantId = this.param.grantId;

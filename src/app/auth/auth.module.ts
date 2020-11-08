@@ -5,6 +5,7 @@ import {
   MatInputModule,
   MatButtonModule,
   MatCheckboxModule,
+  MatProgressSpinnerModule,
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -40,6 +41,7 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
   ],

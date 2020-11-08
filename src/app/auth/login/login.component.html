@@ -21,6 +21,10 @@
           <button mat-button class="grant-btn" [disabled]="!loginForm.valid" type="submit">Log in</button>
         </form>
 
+        <div class="btn-spinner" *ngIf="logingin">
+          <mat-spinner [diameter]="40"></mat-spinner>
+        </div>
+
         <br>
         <br>
         <div class="grant-auth-p">
