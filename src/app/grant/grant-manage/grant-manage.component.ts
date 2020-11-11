@@ -16,6 +16,7 @@ export interface Status {
   styleUrls: ["./grant-manage.component.scss"],
 })
 export class GrantManageComponent implements OnInit {
+  updating: Boolean;
   grantId: any;
 
   possible_status: Status[] = [
@@ -61,15 +62,20 @@ export class GrantManageComponent implements OnInit {
   }
 
   updateGrant() {
+    this.updating = true;
     this.grantService.updateGrant(this.grantId, this.grant).subscribe(
       (res) => {
-        this.toastr.success(
-          "Grant details have been updated.",
-          "Updated Successfully!"
-        );
-        this.router.navigate(["grants", this.grantId]);
+        if (res) {
+          this.toastr.success(
+            "Grant details have been updated.",
+            "Updated Successfully!"
+          );
+          this.updating = false;
+          this.router.navigate(["grants", this.grantId]);
+        }
       },
       (err) => {
+        this.updating = false;
         this.toastr.error(
           "Error updating Grant details, please try again.",
           "Update Error!"
