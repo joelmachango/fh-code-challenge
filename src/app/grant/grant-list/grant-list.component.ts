@@ -21,7 +21,6 @@ export class GrantListComponent implements OnInit {
   loadGrants() {
     this.grantService.getGrants().subscribe(
       (res) => {
-        console.log(res.grants);
         this.grants = res.grants;
 
         const ELEMENT_DATA = this.grants;

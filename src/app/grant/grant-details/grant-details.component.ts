@@ -80,17 +80,19 @@ export class GrantDetailsPopupConponent {
   ngOnInit() {}
 
   deleteGrant(grantId: number) {
-    console.log("DeleteID " + this.data.grand_id);
     grantId = this.data.grand_id;
-    console.log("Delete");
     this.grantService.deleteGrant(grantId).subscribe(
       (res) => {
-        console.log(res);
-        this.toastr.success("Delete Grant!", res.message, {
-          timeOut: 3000,
-        });
-        this.closeDialog();
-        this.router.navigate(["/grants"]);
+        if (res) {
+          this.toastr.success("Delete Grant!", res.message, {
+            timeOut: 3000,
+          });
+          this.closeDialog();
+          this.router.navigate(["/grants"]);
+        }
+        (err: any) => {
+          console.log(err);
+        };
       },
       (err) => {
         console.log(err);
