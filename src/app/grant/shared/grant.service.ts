@@ -23,8 +23,7 @@ export class GrantService {
     return this.http.post(`${this.apiURL}/api/grant`, grant);
   }
 
-  public updateGrant(grantId: any, grant: any): Observable<any> {
-    const body: any = JSON.stringify({ content: grant });
+  public updateGrant(grantId: any, body: Grant): Observable<any> {
     return this.http.put(`${this.apiURL}/api/grant/` + grantId, body);
   }
 

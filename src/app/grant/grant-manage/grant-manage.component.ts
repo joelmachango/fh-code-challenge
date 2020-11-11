@@ -55,18 +55,26 @@ export class GrantManageComponent implements OnInit {
         this.grant = grant;
       },
       (err) => {
-        console.log(err);
+        this.toastr.info("Error loading Grant details.", "No Grant Fount!");
       }
     );
   }
 
   updateGrant() {
-    console.log(this.grantId);
-    console.log(this.grant);
-    this.grantService
-      .updateGrant(this.grantId, this.grant)
-      .subscribe((grant: Grant) => {
-        console.log(grant);
-      });
+    this.grantService.updateGrant(this.grantId, this.grant).subscribe(
+      (res) => {
+        this.toastr.success(
+          "Grant details have been updated.",
+          "Updated Successfully!"
+        );
+        this.router.navigate(["grants", this.grantId]);
+      },
+      (err) => {
+        this.toastr.error(
+          "Error updating Grant details, please try again.",
+          "Update Error!"
+        );
+      }
+    );
   }
 }
