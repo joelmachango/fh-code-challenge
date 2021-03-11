@@ -18,8 +18,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { GrantCreateComponent } from "./grant-create/grant-create.component";
 import {
   GrantDetailsComponent,
-  GrantDetailsPopupConponent,
+  // GrantDetailsPopupConponent,
 } from "./grant-details/grant-details.component";
+import { GrantDetailsPopupConponent } from "./grant-details/grant-details-popup/grant-detail-popup.component";
+
 import { GrantListComponent } from "./grant-list/grant-list.component";
 import { GrantManageComponent } from "./grant-manage/grant-manage.component";
 import { GrantComponent } from "./grant.component";
@@ -59,7 +61,8 @@ const routes: Routes = [
     GrantListComponent,
     GrantManageComponent,
     GrantComponent,
-    GrantDetailsPopupConponent,
+    // GrantDetailsPopupConponent,
+    GrantDetailsPopupConponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -79,4 +82,4 @@ const routes: Routes = [
   ],
   providers: [GrantService, AuthGuard],
 })
-export class GrantModule {}
+export class GrantModule { }
